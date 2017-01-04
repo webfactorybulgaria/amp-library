@@ -90,6 +90,10 @@ class ParsedValidatorRules
         $detail_or_names_to_track = [];
         /** @var TagSpec $tagspec */
         foreach ($this->rules->tags as $tagspec) {
+            $tagspec->tag_name = strtolower($tagspec->tag_name);
+            if (!empty($tagspec->mandatory_parent))
+                $tagspec->mandatory_parent = strtolower($tagspec->mandatory_parent);
+
             assert(empty($tagspec_by_detail_or_name[ParsedTagSpec::getTagSpecName($tagspec)]));
             $tagspec_by_detail_or_name[ParsedTagSpec::getTagSpecName($tagspec)] = $tagspec;
 
