@@ -38,7 +38,7 @@ class TagSpecDispatch
      */
     public function registerDispatchKey($dispatch_key, ParsedTagSpec $parsed_tag_spec)
     {
-        // assert(!isset($this->tag_specs_by_dispatch[$dispatch_key]));
+        assert(!isset($this->tag_specs_by_dispatch[$dispatch_key]));
         $this->tag_specs_by_dispatch[$dispatch_key] = $parsed_tag_spec;
     }
 
