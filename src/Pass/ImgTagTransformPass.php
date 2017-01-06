@@ -65,6 +65,7 @@ class ImgTagTransformPass extends BasePass
         /** @var DOMQuery $el */
         foreach ($all_a as $el) {
             /** @var \DOMElement $dom_el */
+            $new_dom_el = null;
             $dom_el = $el->get(0);
             if ($this->isSvg($dom_el)) {
                 // @TODO This should be marked as a validation warning later?
@@ -85,7 +86,11 @@ class ImgTagTransformPass extends BasePass
             else {
                 $new_dom_el = $this->convertAmpImg($el, $lineno, $context_string);
             }
-            $this->context->addLineAssociation($new_dom_el, $lineno);
+
+            if ($new_dom_el) {
+                $this->context->addLineAssociation($new_dom_el, $lineno);
+            }
+
             $el->remove(); // remove the old img tag
         }
 
